@@ -1,0 +1,5 @@
+POST https://api.gptzero.me/v2/predict/text
+
+{
+    
+}

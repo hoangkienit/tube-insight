@@ -1,0 +1,83 @@
+.analyzer-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 24px;
+  background: #f5f7fa;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'spartan';
+}
+
+.analyzer-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.analyzer-input-group {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.analyzer-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-family: 'spartan';
+}
+
+.analyzer-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: 'spartan';
+}
+
+.analyzer-button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.analyzer-card {
+  display: flex;
+  gap: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  flex-direction: column;
+}
+
+.analyzer-thumbnail {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.analyzer-details {
+  flex: 1;
+}
+
+.analyzer-video-title {
+  font-size: 22px;
+  margin: 0 0 8px;
+  color: #222;
+}
+
+.analyzer-channel,
+.analyzer-duration {
+  margin: 4px 0;
+  font-size: 16px;
+  color: #666;
+}

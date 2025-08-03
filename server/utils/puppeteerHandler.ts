@@ -8,7 +8,7 @@ import { AnalyzeResult } from '../interfaces/youtube.interface';
 /**
  * Check if the YouTube URL is valid.
  */
-function isValidYouTubeUrl(url: string): boolean {
+export function isValidYouTubeUrl(url: string): boolean {
     try {
         const parsed = new URL(url);
         return (
@@ -25,11 +25,6 @@ function isValidYouTubeUrl(url: string): boolean {
  * Puppeteer: Load YouTube video, verify playback, and capture thumbnail.
  */
 export async function analyzeYoutubeUrl(videoUrl: string): Promise<AnalyzeResult> {
-    if (!isValidYouTubeUrl(videoUrl)) {
-        // console.log(videoUrl);
-        throw new BadRequestError('Invalid YouTube URL');
-    }
-
     const browser = await puppeteer.launch({
         headless: 'shell',
         args: ['--no-sandbox', '--disable-setuid-sandbox']

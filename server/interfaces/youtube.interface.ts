@@ -6,3 +6,7 @@ export interface AnalyzeResult {
     channelName: string;
     duration: string;
 }
+
+export interface AnalyzeResponse extends AnalyzeResult {
+    audioPath: string;
+}

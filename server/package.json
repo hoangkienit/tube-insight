@@ -18,9 +18,13 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "puppeteer": "^24.15.0"
+    "puppeteer": "^24.15.0",
+    "youtube-dl-exec": "^3.0.22",
+    "ytdl-core": "^4.11.5"
   }
 }

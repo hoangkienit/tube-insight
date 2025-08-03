@@ -1,0 +1,68 @@
+.custom-toast {
+    font-family: 'spartan';
+    z-index: 9999999;
+}
+
+
+.frtoast-wrapper {
+    display: flex;
+    align-items: flex-start;
+    border-radius: 8px;
+    width: max-content;
+    gap: 10px;
+    font-family: 'spartan';
+    margin: 0;
+}
+
+.frtoast-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.frtoast-content {
+    flex: 1;
+    font-size: 17px;
+    color: #333;
+}
+
+.frtoast-actions {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.frtoast-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.frtoast-accept {
+    background-color: #4caf50;
+    color: white;
+}
+
+.frtoast-reject {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.frtoast-accept:hover {
+    background-color: #43a047;
+}
+
+.frtoast-reject:hover {
+    background-color: #d5d5d5;
+}
+
+.frtoast-time {
+    font-size: 14px;
+    color: darkgrey;
+}

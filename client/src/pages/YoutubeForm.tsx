@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './VideoAnalyzer.css';
 import { AnalyzeVideo } from '../api/youtube.api';
+import ToastNotification, { showTopToast } from '../components/toasts/toast';
 
 interface VideoData {
     thumbnailPath: string;
@@ -23,8 +24,8 @@ export const VideoAnalyzer: React.FC = () => {
             if (res.success) {
                 setVideo(res.data);
             }
-        } catch (error) {
-            alert('Failed to analyze video');
+        } catch (error: any) {
+            showTopToast(error.message, "error", 5000);
         } finally {
             setLoading(false);
         }
@@ -32,6 +33,7 @@ export const VideoAnalyzer: React.FC = () => {
 
     return (
         <div className="analyzer-container">
+            <ToastNotification/>
             <h1 className="analyzer-title">YouTube Video Analyzer</h1>
             <div className="analyzer-input-group">
                 <input

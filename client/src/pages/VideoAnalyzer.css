@@ -2,17 +2,18 @@
   max-width: 800px;
   margin: 50px auto;
   padding: 24px;
-  background: #f5f7fa;
+  background: #1e1e2f;
   border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  font-family: 'spartan';
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  font-family: 'spartan', sans-serif;
+  color: #f0f0f0;
 }
 
 .analyzer-title {
   text-align: center;
   font-size: 28px;
   margin-bottom: 24px;
-  color: #333;
+  color: #ffffff;
 }
 
 .analyzer-input-group {
@@ -25,36 +26,42 @@
   flex: 1;
   padding: 12px 16px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
+  background-color: #2c2c3b;
+  color: #f0f0f0;
   border-radius: 8px;
   outline: none;
-  font-family: 'spartan';
+  font-family: 'spartan', sans-serif;
 }
 
 .analyzer-button {
   padding: 12px 24px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #4a90e2;
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  font-family: 'spartan';
+  font-family: 'spartan', sans-serif;
+}
+
+.analyzer-button:hover:not(:disabled) {
+  background-color: #357ac8;
 }
 
 .analyzer-button:disabled {
-  background-color: #999;
+  background-color: #666;
   cursor: not-allowed;
 }
 
 .analyzer-card {
   display: flex;
   gap: 20px;
-  background-color: #fff;
+  background-color: #2a2a3d;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   align-items: center;
   flex-direction: column;
 }
@@ -72,12 +79,12 @@
 .analyzer-video-title {
   font-size: 22px;
   margin: 0 0 8px;
-  color: #222;
+  color: #ffffff;
 }
 
 .analyzer-channel,
 .analyzer-duration {
   margin: 4px 0;
   font-size: 16px;
-  color: #666;
+  color: #cccccc;
 }

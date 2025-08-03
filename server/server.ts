@@ -16,6 +16,8 @@ const port = process.env.PORT as string;
 
 app.use(express.json());
 app.use('/thumbnails', express.static(path.join(__dirname, 'thumbnails')));
+app.use('/audios', express.static(path.join(__dirname, 'audios')));
+
 
 //===========CORS===========
 app.use(cors({

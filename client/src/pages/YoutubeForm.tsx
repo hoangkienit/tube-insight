@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import './VideoAnalyzer.css';
 import { AnalyzeVideo } from '../api/youtube.api';
 import ToastNotification, { showTopToast } from '../components/toasts/toast';
-
-interface VideoData {
-    thumbnailPath: string;
-    title: string;
-    channelName: string;
-    duration: string;
-}
+import { VideoData } from '../interfaces/youtube.interface';
 
 export const VideoAnalyzer: React.FC = () => {
     const [url, setUrl] = useState('');
@@ -22,6 +16,7 @@ export const VideoAnalyzer: React.FC = () => {
             const res = await AnalyzeVideo(url);
 
             if (res.success) {
+                console.log(res.data);
                 setVideo(res.data);
             }
         } catch (error: any) {
@@ -33,7 +28,7 @@ export const VideoAnalyzer: React.FC = () => {
 
     return (
         <div className="analyzer-container">
-            <ToastNotification/>
+            <ToastNotification />
             <h1 className="analyzer-title">YouTube Video Analyzer</h1>
             <div className="analyzer-input-group">
                 <input
@@ -58,6 +53,28 @@ export const VideoAnalyzer: React.FC = () => {
                     </div>
                 </div>
             )}
+
+            <h2 className="transcript-title">Transcript</h2>
+            {video?.sentences.sentences.map((sentence, index) => (
+                <div key={index} className="transcript-sentence">
+                    <div className="transcript-sentence-header">
+                        <span className="transcript-sentence-label">Sentence {index + 1}:</span>
+                        <span className="transcript-confidence">Confidence: {sentence.confidence.toFixed(2)}</span>
+                    </div>
+                    <p className="transcript-text">{sentence.text}</p>
+                    <ul className="transcript-word-list">
+                        {sentence.words.map((word, i) => (
+                            <li
+                                key={i}
+                                className={`transcript-word ${word.confidence < 0.6 ? "transcript-word-low" : ""
+                                    }`}
+                            >
+                                "{word.text}" — confidence: {word.confidence.toFixed(2)}, start: {word.start}, end: {word.end}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
         </div>
     );
 };

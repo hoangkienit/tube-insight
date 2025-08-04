@@ -1,6 +1,7 @@
 import { AnalyzeResponse } from "../interfaces/youtube.interface";
 import { downloadAudio } from "../utils/audioHandler";
 import { analyzeYoutubeUrl } from "../utils/puppeteerHandler";
+import { handleProcessTranscribeAudio } from "../utils/transcribeHandler";
 
 
 
@@ -10,10 +11,13 @@ class YoutubeService {
             analyzeYoutubeUrl(url),
             downloadAudio(url, `${Date.now()}-audio`)
         ]);
+
+        const sentences = await handleProcessTranscribeAudio(audioPath);
         
         return {
             ...analyzeResult,
-            audioPath
+            audioPath,
+            sentences
         };
     }
 }

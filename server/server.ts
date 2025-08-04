@@ -67,6 +67,6 @@ process.on("unhandledRejection", (err) => {
     console.error("Unhandled Rejection:", err);
 });
 
-server.listen(port, () => {
+server.listen(port, '0.0.0.0', () => {
     console.log(`Server is running at http://localhost:${port}`);
 });

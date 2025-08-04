@@ -1,0 +1,7 @@
+POST https://api.sapling.ai/api/v1/aidetect
+Content-Type: application/json
+
+{
+    "key": "",
+    "text": "But if I'm being honest, I don't care what you think of my talk."
+}

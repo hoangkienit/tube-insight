@@ -17,12 +17,13 @@ export interface AnalyzeResponse extends AnalyzeResult {
     };
 }
 
-interface Sentence {
+export interface Sentence {
     text: string;
     start: number;
     end: number;
     confidence: number;
     words: Word[];
+    ai_probability: number;
 }
 
 interface Word {

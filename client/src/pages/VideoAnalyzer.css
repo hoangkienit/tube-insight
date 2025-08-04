@@ -133,3 +133,7 @@
   color: #c0392b;
   /* font-weight: bold; */
 }
+
+.download-button {
+    margin-top: 20px;
+}

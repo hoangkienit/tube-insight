@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import path from 'path';
+import rateLimit from 'express-rate-limit';
 
 // Import routes
 import YoutubeRoute from './routes/youtube.route';
@@ -38,6 +39,13 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 // app.use(requestLogger);
 
+
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 10, // limit each IP to 10 requests per minute
+});
+
+app.use('/api/v1/youtube', limiter);
 
 // Routes
 app.get('/', (req, res) => {

@@ -3,6 +3,7 @@ import './VideoAnalyzer.css';
 import { AnalyzeVideo } from '../api/youtube.api';
 import ToastNotification, { showTopToast } from '../components/toasts/toast';
 import { VideoData } from '../interfaces/youtube.interface';
+import { downloadJson } from '../utils/downloadFile';
 
 export const VideoAnalyzer: React.FC = () => {
     const [url, setUrl] = useState('');
@@ -25,6 +26,11 @@ export const VideoAnalyzer: React.FC = () => {
             setLoading(false);
         }
     };
+
+    const handleDownloadJson = (data: VideoData) => {
+        downloadJson(data, "transcript.json");
+        showTopToast("Downloaded JSON file.", "success", 5000);
+    }
 
     return (
         <div className="analyzer-container">
@@ -54,26 +60,40 @@ export const VideoAnalyzer: React.FC = () => {
                 </div>
             )}
 
-            <h2 className="transcript-title">Transcript</h2>
-            {video?.sentences.sentences.map((sentence, index) => (
-                <div key={index} className="transcript-sentence">
-                    <div className="transcript-sentence-header">
-                        <span className="transcript-sentence-label">Sentence {index + 1}:</span>
-                        <span className="transcript-confidence">Confidence: {sentence.confidence.toFixed(2)}</span>
-                    </div>
-                    <p className="transcript-text">{sentence.text}</p>
-                    <ul className="transcript-word-list">
-                        {sentence.words.map((word, i) => (
-                            <li
-                                key={i}
-                                className={`transcript-word ${word.confidence < 0.6 ? "transcript-word-low" : ""
-                                    }`}
-                            >
-                                "{word.text}" — confidence: {word.confidence.toFixed(2)}, start: {word.start}, end: {word.end}
-                            </li>
-                        ))}
-                    </ul>
+            {video && (
+                <div style={{ textAlign: "center", marginBottom: "20px" }}>
+                    <button
+                        className="analyzer-button download-button"
+                        onClick={() => handleDownloadJson(video)}
+                    >
+                        Download Transcript as JSON
+                    </button>
                 </div>
+            )}
+
+            {video?.sentences.sentences.map((sentence, index) => (
+                <>
+                    <h2 className="transcript-title">Transcript</h2>
+                    <div key={index} className="transcript-sentence">
+                        <div className="transcript-sentence-header">
+                            <span className="transcript-sentence-label">Sentence {index + 1}:</span>
+                            <span className="transcript-confidence">Confidence: {sentence.confidence.toFixed(2)}</span>
+                            <span className="transcript-confidence">AI Probability: {sentence.ai_probability.toFixed(10)}</span>
+                        </div>
+                        <p className="transcript-text">{sentence.text}</p>
+                        <ul className="transcript-word-list">
+                            {sentence.words.map((word, i) => (
+                                <li
+                                    key={i}
+                                    className={`transcript-word ${word.confidence < 0.6 ? "transcript-word-low" : ""
+                                        }`}
+                                >
+                                    "{word.text}" — confidence: {word.confidence.toFixed(2)}, start: {word.start}, end: {word.end}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </>
             ))}
         </div>
     );

@@ -4,6 +4,7 @@ export interface Sentence {
     end: number;
     confidence: number;
     words: Word[];
+    ai_probability: number;
 }
 
 export interface VideoData {

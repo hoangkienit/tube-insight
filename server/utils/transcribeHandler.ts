@@ -17,6 +17,11 @@ export const handleProcessTranscribeAudio = async (filePath: string) => {
 
   const sentences = await getSentences(transcriptId);
 
+  fs.unlink(filePath, (err) => {
+    if (err) console.error('Error deleting:', err);
+    else console.log('Audio deleted.');
+  });
+
   return sentences;
 }
 

@@ -14,11 +14,10 @@
     "emitDecoratorMetadata": true,
     "importHelpers": true,
     "downlevelIteration": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "outDir": "./dist"
   },
   "include": [
-    "src/**/*"
+    "**/*.ts"
   ],
   "exclude": [
     "node_modules",

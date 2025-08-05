@@ -1,6 +1,21 @@
 FROM node:18
+
+# Set working directory inside the container
 WORKDIR /app
-COPY . .
+
+# Copy package.json and package-lock.json first
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-EXPOSE 8080
+
+# Copy the rest of your app source code
+COPY . .
+
+RUN npm run build
+
+# Expose port your app runs on (adjust if needed)
+EXPOSE 5000
+
+# Start the app
 CMD ["npm", "start"]

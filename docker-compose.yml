@@ -1,10 +1,35 @@
-
-version: "3.8"
+version: '3.8'
 
 services:
-  web:
-    build: .
-    container_name: tube-insight
+  server:
+    build: ./server
     ports:
       - "8080:8080"
-    restart: unless-stopped
+    restart: always
+    networks:
+      - webnet
+
+  client:
+    build: ./client
+    restart: always
+    networks:
+      - webnet
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./client/dist:/usr/share/nginx/html
+      - ./nginx/ssl:/etc/letsencrypt
+    depends_on:
+      - client
+      - server
+    restart: always
+    networks:
+      - webnet
+
+networks:
+  webnet:

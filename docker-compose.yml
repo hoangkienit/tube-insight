@@ -10,6 +10,9 @@ services:
       - NODE_ENV=production
     env_file:
       - ./server/.env.production
+    volumes:
+      - ./server/thumbnails:/app/thumbnails
+      - ./server/audios:/app/audios
 
   frontend:
     build:

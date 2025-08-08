@@ -4,7 +4,7 @@ const serverUrl = process.env.REACT_APP_SERVER_URL;
 const api = axios.create({
     baseURL: serverUrl,
     withCredentials: true,
-    timeout: 500000
+    timeout: 50000000
 });
 
 

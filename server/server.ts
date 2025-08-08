@@ -25,11 +25,15 @@ app.use(cors({
     origin: function (origin, callback) {
         const allowedOrigins = [
             'http://localhost:3000',
+            'http://hoangkien.cloud',
+            'https://hoangkien.cloud',
+            'http://www.hoangkien.cloud',
+            'https://www.hoangkien.cloud'
         ];
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS'));
+            callback(new Error(`Not allowed by CORS with origin: ${origin}`));
         }
     },
     credentials: true,
@@ -41,14 +45,20 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 10, // limit each IP to 10 requests per minute
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 10, // limit each IP to 10 requests per minute
 });
 
-app.use('/api/v1/youtube', limiter);
+app.use('/api', limiter);
+
+app.use((req, res, next) => {
+  console.log(`[${req.method}] ${req.url}`);
+  next();
+});
+
 
 // Routes
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.send('Hello from TypeScript backend!');
 });
 

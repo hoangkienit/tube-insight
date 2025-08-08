@@ -1,9 +1,13 @@
-import puppeteer from 'puppeteer';
+
 import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
 import { BadRequestError } from '../core/error.response';
 import { AnalyzeResult } from '../interfaces/youtube.interface';
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+
+puppeteer.use(StealthPlugin());
 
 /**
  * Check if the YouTube URL is valid.
@@ -21,20 +25,33 @@ export function isValidYouTubeUrl(url: string): boolean {
     }
 }
 
-/**
- * Puppeteer: Load YouTube video, verify playback, and capture thumbnail.
- */
 export async function analyzeYoutubeUrl(videoUrl: string): Promise<AnalyzeResult> {
+
     const browser = await puppeteer.launch({
         headless: 'shell',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--no-zygote',
+            // '--single-process',
+        ],
+        // executablePath: '/usr/bin/chromium'
     });
 
     const page = await browser.newPage();
+    page.setDefaultNavigationTimeout(10 * 60 * 1000);
+    await page.setUserAgent(
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
+    );
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': 'en-US,en;q=0.9'
+    });
     await page.setViewport({ width: 1280, height: 720 });
 
     try {
-        await page.goto(videoUrl, { waitUntil: 'networkidle2', timeout: 50000 });
+        await page.goto(videoUrl, { waitUntil: 'networkidle2', timeout: 100000 });
         await page.waitForSelector('video', { timeout: 10000 });
         await page.waitForSelector('h1.title', { timeout: 10000 });
         await page.waitForSelector('ytd-channel-name', { timeout: 10000 });

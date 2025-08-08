@@ -21,11 +21,10 @@
 
 | Layer        | Technology                   |
 |--------------|------------------------------|
-| Backend      | Node.js, Express.js          |
+| Backend      | NodeJS, ExpressJS            |
 | API          | Sapling API, AssemblyAI      |
 | Middleware   | CORS, dotenv, rate-limit     |
-| Frontend     | [Planned: React/Next.js]     |
-| Dev Tools    | nodemon, ESLint              |
+| Frontend     | ReactJS                      |
 | Deployment   | Docker, VPS (frontend: nginx, backend)|
 
 ---
@@ -84,25 +83,6 @@ Backend will be running at: `http://localhost:5000`
 
 ---
 
-## 📁 Project Structure
-
-```
-tube-insight/
-├── routes/
-│   └── youtube.route.ts     # Main API routes
-├── controllers/
-│   └── youtube.controller.ts# API logic
-├── services/
-│   └── youtube.service.ts# API logic
-├── middlewares/
-│   └── error.middleware.ts  # Error handling
-├── utils/
-├── .env
-├── index.ts                 # Entry point
-└── package.json
-```
-
----
 
 ## 🛡️ Security
 
@@ -111,9 +91,14 @@ tube-insight/
 
 ---
 
-## 🙋‍♂️ Contributing
+## 🙋‍♂️ About Project
 
-Pull requests are welcome! If you find any bugs or want to contribute a feature, please fork the repo and submit a PR.
+Using Assembly AI (speech-to-text) from audio.
+Using Sapling API for AI content detector (AI probability)
+Deploy on my own VPS using nginx configuration for frontend, docker-compose for backend, firewall configuration.
+Binding frontend in docker container is port 3000 and backend for port 5000 with domain https://hoangkien.cloud.
+Config the SSL for https with free SSL certification and auto renewable.
+
 
 ---
 

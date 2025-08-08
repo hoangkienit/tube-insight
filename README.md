@@ -1,4 +1,4 @@
-# 🎥 Tube Insight (TypeScript)
+# Tube Insight (TypeScript)
 
 **Tube Insight** is a modern, full-stack web application that provides powerful insights into YouTube video data. Built with **Node.js**, **Express**, and modern frontend frameworks (ReactJS)
 
@@ -6,14 +6,14 @@
 
 ## 🚀 Features
 
-- 🔍 Analyze YouTube videos by URL
-- 📊 Extract and display key video metrics:
+- Analyze YouTube videos by URL
+- Extract and display key video metrics:
   - Title, channel name
   - Video duration
-- 🧠 Sentence-level analysis and AI probability (for captions/subtitles)
-- 💨 Fast and rate-limited backend API using Express
-- 🔐 Environment-configured with `.env` for secret keys
-- ⚙️ Ready for deployment (Docker, Vercel, etc.)
+- Sentence-level analysis and AI probability (for captions/subtitles)
+- Fast and rate-limited backend API using Express
+- Environment-configured with `.env` for secret keys
+- Ready for deployment (Docker, Vercel, etc.)
 
 ---
 
@@ -69,19 +69,6 @@ Backend will be running at: `http://localhost:5000`
 | Method | Endpoint            | Description                     |
 |--------|---------------------|---------------------------------|
 | POST   | `/api/v1/youtube/analyze` | Analyze sentence-level data with words timestamps    |
-
----
-
-## 🚧 Roadmap
-
-- [x] Backend API for YouTube metadata
-- [x] Subtitle/sentence analysis
-- [ ] Frontend UI with React
-- [ ] Auth integration (optional)
-- [ ] Store history / user sessions
-- [ ] Deploy to production
-
----
 
 
 ## 🛡️ Security
